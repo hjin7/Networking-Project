@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>XSS Protection Demo</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+</head>
+
+<body>
+
+    <h1>XSS Protection Demo</h1>
+
+    <p>Enter a comment below:</p>
+
+    <input type="text" id="userInput">
+
+    <button onclick="displayComment()">
+        Submit
+    </button>
+
+    <h2>Sanitized Output</h2>
+
+    <div id="output"></div>
+
+
+    <script>
+
+        function displayComment() {
+
+            const userInput =
+                document.getElementById("userInput").value;
+
+            const cleanInput =
+                DOMPurify.sanitize(userInput);
+
+            document.getElementById("output").innerHTML =
+                cleanInput;
+        }
+
+    </script>
+
+</body>
+
+</html>
